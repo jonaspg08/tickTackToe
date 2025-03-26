@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-import PageOverlay from './components/PageOverlay.vue'
 
 const gameBoard = ref([
   ['', '', ''],
@@ -80,6 +79,9 @@ function resetGame() {
     </div>
   </main>
   <button class="reset" @click="resetGame()">Reset Game</button>
-  <PageOverlay :gameBoard="gameBoard"/>
+  <div :class='gameOver ? "overlayActive" : "overlayPause"'>
+    <h1>Congrats. Reset the game by pushing the button!</h1>
+    <button class="reset" @click="resetGame()">Reset Game</button>
+  </div>
 </template>
 <style scoped></style>
