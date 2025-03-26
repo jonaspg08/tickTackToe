@@ -34,11 +34,13 @@ button {
 }
 
 .true {
-  background-color: red;
+  /* background-color: red; */
+  background-color: white;
 }
 
 .false {
-  background-color: green;
+  /* background-color: green; */
+  background-color: white;
 }
 
 .reset {

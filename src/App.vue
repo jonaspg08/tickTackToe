@@ -69,11 +69,11 @@ function resetGame() {
       <div v-for="(field, fieldIndex) in row">
         <button :class="field.toString()" @click="clickOnBoard(rowIndex, fieldIndex, activePlayer)">
           <svg v-if="field === false" width="2rem" height="2rem" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="40" stroke="white" stroke-width="10" fill="none" />
+            <circle cx="50" cy="50" r="40" stroke="black" stroke-width="10" fill="none" />
           </svg>
           <svg v-if="field === true" width="2rem" height="2rem" viewBox="0 0 100 100">
-            <line x1="10" y1="10" x2="90" y2="90" stroke="white" stroke-width="10" />
-            <line x1="90" y1="10" x2="10" y2="90" stroke="white" stroke-width="10" />
+            <line x1="10" y1="10" x2="90" y2="90" stroke="black" stroke-width="10" />
+            <line x1="90" y1="10" x2="10" y2="90" stroke="black" stroke-width="10" />
           </svg>
         </button>
       </div>
