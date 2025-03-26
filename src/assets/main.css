@@ -14,7 +14,7 @@ body {
 
 main {
   display: flex;
-  margin-left: 45.5%;
+  margin-left: 42.7%;
 }
 
 .title {
@@ -26,20 +26,18 @@ main {
 }
 
 button {
-  width: 3rem;
-  height: 3rem;
+  width: 5rem;
+  height: 5rem;
   font-size: 0.8rem;
   border: 1px solid black;
   cursor: pointer;
 }
 
 .true {
-  /* background-color: red; */
   background-color: white;
 }
 
 .false {
-  /* background-color: green; */
   background-color: white;
 }
 
