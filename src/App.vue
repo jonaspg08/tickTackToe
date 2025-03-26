@@ -8,14 +8,15 @@ const gameBoard = ref([
 ]);
 
 function clickOnBoard(row, col, player) {
-  if (gameBoard.value[row][col] === '') {
-    gameBoard.value[row][col] = player;
+  if (gameBoard.value[row][col] === '' && !gameOver.value) {
+    gameBoard.value[row][col] = activePlayer.value;
   }
-
+  if (gameEnd()) return;
   console.log('winCheck', winCheck())
   activePlayer.value = !activePlayer.value;
 }
 const activePlayer = ref(false);
+const gameOver = ref(false);
 
 function winCheck() {
   for (let i = 0; i < gameBoard.value.length; i++) {
@@ -33,26 +34,21 @@ function winCheck() {
   } return false;
 }
 
-// if (gameBoard.value[0][0] === gameBoard.value[0][1] && gameBoard.value[0][1] === gameBoard.value[0][2] && gameBoard.value[0][1] !='') {
-//   return true;
-// } else if (gameBoard.value[1][0] === gameBoard.value[1][1] && gameBoard.value[1][1] === gameBoard.value[1][2] && gameBoard.value[1][1] !='') {
-//   return true;
-// } else if (gameBoard.value[2][0] === gameBoard.value[2][1] && gameBoard.value[2][1] === gameBoard.value[2][2] && gameBoard.value[2][1] !='') {
-//   return true;
-// } else if (gameBoard.value[0][0] === gameBoard.value[1][0] && gameBoard.value[1][0] === gameBoard.value[2][0] && gameBoard.value[1][0] !='') {
-//   return true;
-// } else if (gameBoard.value[0][1] === gameBoard.value[1][1] && gameBoard.value[1][1] === gameBoard.value[2][1] && gameBoard.value[1][1] !='') {
-//   return true;
-// } else if (gameBoard.value[0][2] === gameBoard.value[1][2] && gameBoard.value[1][2] === gameBoard.value[2][2] && gameBoard.value[1][2] !='') {
-//   return true;
-// } else if (gameBoard.value[0][0] === gameBoard.value[1][1] && gameBoard.value[1][1] === gameBoard.value[2][2] && gameBoard.value[1][1] !='') {
-//   return true;
-// } else if (gameBoard.value[0][2] === gameBoard.value[1][1] && gameBoard.value[1][1] === gameBoard.value[2][0] && gameBoard.value[1][1] !='') {
-//   return true;
-// } else {
-//   return false;
-// }
+function isBoardFull() {
+  return gameBoard.value.every(row => row.every(cell => cell !== ''))
+}
 
+function gameEnd() {
+  if (winCheck()) {
+    gameOver.value = true;
+    console.log("Someone Won!")
+    return true;
+  } else if (isBoardFull()) {
+    gameOver.value = true;
+    return true;
+  }
+  return false;
+}
 
 function resetGame() {
   gameBoard.value = [
@@ -60,13 +56,13 @@ function resetGame() {
     ['', '', ''],
     ['', '', '']
   ];
+  gameBoard.value !== false;
 }
-
 </script>
 
 <template>
   <div class="title">
-    <h1>TickTackToe</h1>
+    <p>TickTackToe</p>
   </div>
   <main>
     <div v-for="(row, rowIndex) in gameBoard">
@@ -86,49 +82,4 @@ function resetGame() {
   <button class="reset" @click="resetGame()">Reset Game</button>
 </template>
 
-<style scoped>
-main {
-  display: flex;
-  margin-left: 45.5%;
-}
-
-.title {
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-button {
-  width: 3rem;
-  height: 3rem;
-  font-size: 0.8rem;
-  border: 1px solid black;
-  background-color: white;
-  cursor: pointer;
-}
-
-.true {
-  background-color: red;
-}
-
-.false {
-  background-color: green;
-}
-
-.reset {
-  display: flex;
-  margin-left: 47.4%;
-  margin-top: 3rem;
-  width: 90px;
-  height: 20px;
-  justify-content: center;
-  border-radius: 5px;
-  transition: all 1s;
-  box-shadow: #9f9fad;
-  background-color: #9f9fad;
-}
-
-.reset:hover{
-background-color: #aecfdf;
-color: #000000;
-}
-</style>
+<style scoped></style>
